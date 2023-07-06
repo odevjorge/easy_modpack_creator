@@ -12,3 +12,5 @@ pyflakes==3.0.1
 tomli==2.0.1
 typing_extensions==4.5.0
 Werkzeug==2.2.3
+python-dotenv=1.0.0
+requests~=2.31.0

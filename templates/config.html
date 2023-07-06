@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Configuração {% endblock %}
+
+{% block body %}
+    <p>Selecione suas configurações para o modpack</p>
+    <div>
+            <label>
+                Versão
+                <select name="versao" id="versao">
+                    {% for version in context['versions'] %}
+                        <option value="{{ version['versionString'] }}">{{ version['versionString'] }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label>
+                ModLoader
+                <select name="modloader" id="modloader">
+                    {% for modloader in context['modloaders'] %}
+                        <option value="{{ context['modloaders'][modloader] }}">{{ context['modloaders'][modloader] }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <button onclick="send()">Enviar</button>
+
+        </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function send() {
+            var select1 = document.getElementById("versao");
+            var select2 = document.getElementById("modloader");
+
+            var valorSelect1 = select1.options[select1.selectedIndex].value;
+            var valorSelect2 = select2.options[select2.selectedIndex].value;
+
+            var url = "/" + valorSelect1 + "/" + valorSelect2;
+
+            // Redirecionar para a URL
+            window.location.href = url;
+        }
+    </script>
+{% endblock %}
