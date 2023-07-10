@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Configuração {% endblock %}
+
+{% block body %}
+    <p>Selecione suas configurações para o modpack</p>
+    <div>
+        <form action="." method="post">
+        {% csrf_token %}
+            <label>
+                Versão
+                <select name="versao" id="versao">
+                    {% for version in versions %}
+                        <option value="{{ version }}">{{ version }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label>
+                ModLoader
+                <select name="modloader" id="modloader">
+                    {% for modloader in modloaders %}
+                        <option value="{{ modloader }}">{{ modloader }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+    </div>
+{% endblock %}

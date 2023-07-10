@@ -17,12 +17,12 @@
                 <div>
                     {% for mod in mods %}
                         <div style="display: flex; flex-direction: row">
-                            <img src="{{ mod['mod_icon'] }}" alt="" height="50px" width="50px">
+                            <img src="{{ mod.mod_icon }}" alt="" height="50px" width="50px">
                             <div>
-                                <p>{{ mod['mod_name'] }} by <strong>{{ mod['mod_author'] }}</strong></p>
+                                <p>{{ mod.mod_name }} by <strong>{{ mod.mod_author }}</strong></p>
                                 <div style="display: flex; flex-direction: row">
-                                    <p>Last File for {{ mod['lasted_on_version_file']['game_version'] }}</p>
-                                    <a href="{{ mod['lasted_on_version_file']['download_url'] }}">{{ mod['lasted_on_version_file']['file_name'] }}</a>
+                                    <p>Last File for {{ mod.lasted_on_version_file.game_version }}</p>
+                                    <a href="{{ mod.lasted_on_version_file.download_url }}">{{ mod.lasted_on_version_file.file_name }}</a>
                                 </div>
                             </div>
                         </div>
@@ -33,12 +33,12 @@
             {% if pagination %}
                 <div style="display: flex; flex-direction: row">
                 {% for page in pagination %}
-                    <button type="submit" name="pagination" value="{{ page }}"
-                            {% if request.args.get['pagination'] == page %} disabled {% endif %}>{{ page }}</button>
+                    <button type="submit" name="page" value="{{ page }}"
+                            {% if request.pagination == page %} disabled {% endif %}>{{ page }}</button>
                 {% endfor %}
             </div>
                 {% else %}
-                <input type="hidden" name="pagination" value="1">
+                <input type="hidden" name="page" value="1">
             {% endif %}
         </form>
     </div>
